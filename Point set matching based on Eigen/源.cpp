@@ -90,8 +90,8 @@ void main()
 	Ma.block<3, 4>(0, 0) = Pa.block<4, 3>(0, 0).transpose();
 	Ma.block<1, 4>(3, 0) = Eigen::Matrix<float, 1, 4>::Constant(1);
 	auto AafterP = P * Ma;
-	std::cout << "AafterP\n" << AafterP << std::endl;
+	std::cout << "AafterP\n" << AafterP.transpose().block<4,3>(0,0) << std::endl;
 	std::cout << "Pb\n" << Pb << std::endl;
-
+	std::cout << "Erro: " << abs((AafterP.transpose().block<4, 3>(0, 0) - Pb).sum()) << std::endl;
 	return;
 }
